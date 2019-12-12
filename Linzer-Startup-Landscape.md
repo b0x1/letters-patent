@@ -1,5 +1,7 @@
 # Startup Landscape of Linz, Upper Austria
 
+*work in progress*
+
 ## Community & Events
 
 [AustrianStartups Stammtisch](https://www.austrianstartups.com/services/austrianstartups-stammtisch/)
