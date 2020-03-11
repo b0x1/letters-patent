@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Visuale Exponential Growth</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="display-4">Exponential Growth Visualiser</h1>
+        <p class="lead">This is a simple tool to visuale exponential growth.</p>
+      </div>
+      <form>
+        <div class="form-group">
+          <label for="initialCount">Initial count</label>
+          <input type="number" class="form-control" id="initialCount" aria-describedby="initialCountHelp" value="10">
+          <small id="initialCountHelp" class="form-text text-muted">The start of exponential growth.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="numberOfDays">Number of days</label>
+          <input type="number" class="form-control" id="numberOfDays" aria-describedby="numberOfDaysHelp" value="50">
+          <small id="numberOfDaysHelp" class="form-text text-muted">Number of days into the future.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="doublingRate">Doubling rate in days</label>
+          <input type="number" class="form-control" id="doublingRate" aria-describedby="doublingRateHelp" min="1" value="4">
+          <small id="doublingRateHelp" class="form-text text-muted">Number of days to double the count.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="growthRate">Growth rate per day</label>
+          <input type="number" class="form-control" id="growthRate" aria-describedby="growthRateHelp" min="1" value="1.1892">
+          <small id="growthRateHelp" class="form-text text-muted">Growth rate per day.</small>
+        </div>
+      </form>
+      <div id="graph">
+      </div>
+    </div>
+
+
+    <script>
+      function range(start, end) {
+        return Array(end - start + 1).fill().map((_, idx) => start + idx)
+      }
+
+      var doublingRate = $("#doublingRate").val(); // growth rate
+      var growthRate = $("#growthRate").val(); // doubling rate
+      var initialCount = $("#initialCount").val();
+      var days = this.range(1, $("#numberOfDays").val());
+
+      function growth(x) {
+        return x.map(i => initialCount * growthRate ** i);
+      }
+
+      var data = [{
+        x: days,
+        y: growth(days),
+        type: 'scatter'
+      }];
+
+      var graphDiv = document.getElementById('graph')
+
+      var layout = {
+        title: 'Exponential Growth',
+        xaxis: {
+          title: 'Day',
+          showgrid: false,
+          zeroline: false
+        },
+        yaxis: {
+          title: 'Count',
+          showline: false,
+          zeroline: false,
+        }
+      };
+
+      function update() {
+        data[0].x = range(1, $("#numberOfDays").val())
+        data[0].y = growth(data[0].x);
+        Plotly.update(graphDiv, data, layout);
+      }
+
+      $("#initialCount").keyup(function () {
+        initialCount = $("#initialCount").val();
+        update();
+      });
+
+      $("#numberOfDays").keyup(function () {
+        days = range(1, $("#numberOfDays").val());
+        update();
+      });
+
+      $("#doublingRate").keyup(function () {
+        doublingRate = $("#doublingRate").val();
+        growthRate = Math.exp(Math.log(2) / doublingRate);
+        $("#growthRate").val(growthRate.toFixed(4));
+        update();
+      });
+
+      $("#growthRate").keyup(function () {
+        growthRate = $("#growthRate").val();
+        doublingRate = Math.log(2) / Math.log(growthRate);
+        $("#doublingRate").val(doublingRate.toFixed(4));
+        update();
+      });
+
+      Plotly.newPlot(graphDiv, data, layout);
+    </script>
+  </main>
+</body>
+
+</html>
