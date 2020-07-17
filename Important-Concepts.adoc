@@ -11,7 +11,7 @@
 
 == Physics
 
-* Inertia, F = ma, Fa = -Fb (Newton)
+* Inertia, $F = ma$, $F_A = -F_B$ (Newton)
  
 
 == Biology
