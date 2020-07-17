@@ -1,0 +1,26 @@
+= Logic:
+
+* Necessity and Sufficiency
+* Soundness and Completeness
+* Existential and Universal quantification
+
+== Mathematics:
+
+* Cardinal and Ordinal numbers
+* Nash equilibrium
+
+== Physics
+
+* Inertia, F = ma, Fa = -Fb (Newton)
+ 
+
+== Biology
+
+* Multiplication, mutation, selection, isolation (Darwin)
+* r/K selection theory
+
+== Psychology:
+
+* Parent, Adult, Child model (Transactional analysis)
+* Id, ego, super-ego (Freud)
+* Four-sides model (Schulz von Thun) 
