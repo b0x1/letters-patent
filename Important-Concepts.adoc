@@ -1,13 +1,20 @@
-= Logic:
+= Logic
 
 * Necessity and Sufficiency
 * Soundness and Completeness
-* Existential and Universal quantification
+* Existential (&exist;) and Universal (&forall;) quantification
 
-== Mathematics:
+
+== Mathematics
 
 * Cardinal and Ordinal numbers
 * Nash equilibrium
+
+
+== Statistics
+
+* Validity and Reliability
+
 
 == Physics
 
@@ -19,7 +26,8 @@
 * Multiplication, mutation, selection, isolation (Darwin)
 * r/K selection theory
 
-== Psychology:
+
+== Psychology
 
 * Parent, Adult, Child model (Transactional analysis)
 * Id, ego, super-ego (Freud)
